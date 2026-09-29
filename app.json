@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "Ayah",
+    "slug": "ayah",
+    "owner": "aliem51",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.aas.ayah",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to determine prayer times.",
+        "NSLocationAlwaysUsageDescription": "This app uses your location to determine prayer times.",
+        "NSMicrophoneUsageDescription": "This app uses your microphone to record audio for Quran recognition.",
+        "UIBackgroundModes": [
+          "fetch",
+          "remote-notification"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.aas.ayah",
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "RECORD_AUDIO"
+      ],
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "84350a8c-23ad-4b57-b43d-791af343f3b9"
+      }
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-build-properties"
+    ]
+  }
+}
