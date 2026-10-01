@@ -11,6 +11,29 @@
 
 > Кроссплатформенное мобильное приложение (iOS/Android) для мусульман с чтением Корана, **распознаванием сур по голосу через AI**, расчётом времени намаза, компасом Киблы, зикрами и дуа-дневником — на казахском, русском и английском языках.
 
+## 📸 Скриншоты
+
+<p align="center">
+  <img src="screenshots/registration.png" width="150" alt="Регистрация" />
+  <img src="screenshots/login.png" width="150" alt="Вход" />
+  <img src="screenshots/main_screen.png" width="150" alt="Главный экран" />
+  <img src="screenshots/menu_home.png" width="150" alt="Меню" />
+</p>
+
+<p align="center">
+  <img src="screenshots/quran_reading.png" width="150" alt="Чтение Корана" />
+  <img src="screenshots/quran_surah.png" width="150" alt="Выбор суры" />
+  <img src="screenshots/qibla.png" width="150" alt="Компас Киблы" />
+  <img src="screenshots/dua_diary.png" width="150" alt="Дуа-дневник" />
+</p>
+
+<p align="center">
+  <img src="screenshots/zikrs_list.png" width="150" alt="Список зикров" />
+  <img src="screenshots/zikrs_counter.png" width="150" alt="Счётчик зикров" />
+  <img src="screenshots/99_names_of_allah.png" width="150" alt="99 имён Аллаха" />
+  <img src="screenshots/settings.png" width="150" alt="Настройки" />
+</p>
+
 ---
 
 ## 📌 Содержание
@@ -33,7 +56,7 @@
 
 - 🎙 **AI-распознавание сур** — произнесите аят, и приложение определит суру через Google Speech-to-Text API и поиск по локальной базе Корана
 - 🌐 **Полная поддержка казахского языка** — интерфейс, хиджра-календарь и названия месяцев на қазақша
-- 📖 **Оффлайн-Коран** — полная база Корана хранится локально в SQLite (арабский текст + переводы на английский, русский и казахский)
+- 📖 **Оффлайн-Коран** — полная база Корана хранится локально в SQLite (арабский текст + переводы на английский и русский)
 - 🕐 **Точное время намаза** — расчёт по алгоритму PrayTimes.js с настройками для Алматы (метод Makkah/Umm Al-Qura)
 - 🧭 **Компас Киблы** — определение направления на Каабу с использованием магнитометра и GPS
 - ☁️ **Синхронизация** — прогресс чтения Корана и дуа сохраняются в Firebase Firestore между устройствами
@@ -111,9 +134,7 @@ AAS-Diplom--TestALLtest/
 │   └── *.png                            # Иконки и изображения
 │
 ├── 📂 icons/                            # Иконки намаза и меню
-│   ├── mainmenu/                        # Иконки главного меню
-│   └── quran/                           # Иконки экрана Корана
-│
+├── 📂 screenshots/                      # Скриншоты приложения
 ├── 📂 components/
 │   └── CustomHeader.js                  # Кастомный заголовок
 │
@@ -125,8 +146,7 @@ AAS-Diplom--TestALLtest/
 ├── LanguageContext.js                   # Контекст выбора языка
 ├── package.json                         # Зависимости проекта
 ├── app.json                             # Конфигурация Expo
-├── google-services.json                 # Firebase для Android
-├── GoogleService-Info.plist             # Firebase для iOS
+├── .env.example                         # Шаблон переменных окружения
 └── eas.json                             # Конфигурация EAS Build
 ```
 
@@ -154,15 +174,32 @@ cd AAS-Diplom--TestALLtest/AAS-Diplom--TestALLtest
 npm install
 ```
 
-### 3. Настроить Firebase
+### 3. Настроить переменные окружения
 
-Проект уже содержит конфигурационные файлы Firebase:
-- `google-services.json` — для Android
-- `GoogleService-Info.plist` — для iOS
+Скопируйте файл-шаблон и вставьте свой API-ключ:
 
-> ⚠️ Для работы со своим Firebase-проектом замените эти файлы на свои из [Firebase Console](https://console.firebase.google.com/).
+```bash
+cp .env.example .env
+```
 
-### 4. Запустить приложение
+Откройте `.env` и укажите свой ключ Google Speech-to-Text:
+
+```env
+GOOGLE_SPEECH_API_KEY=ваш_ключ_google_speech_api
+```
+
+> 🔑 Получить ключ можно в [Google Cloud Console](https://console.cloud.google.com/apis/credentials), активировав **Cloud Speech-to-Text API**.
+
+### 4. Настроить Firebase
+
+Добавьте конфигурационные файлы Firebase (они не включены в репозиторий из соображений безопасности):
+
+1. Создайте проект в [Firebase Console](https://console.firebase.google.com/)
+2. Добавьте Android-приложение (`com.aas.ayah`) → скачайте `google-services.json` → положите в корень проекта
+3. Добавьте iOS-приложение (`com.aas.ayah`) → скачайте `GoogleService-Info.plist` → положите в корень проекта
+4. Включите **Authentication** (Email/Password) и **Firestore Database** в консоли Firebase
+
+### 5. Запустить приложение
 
 ```bash
 # Запуск в режиме разработки
@@ -173,7 +210,7 @@ npx expo run:android
 npx expo run:ios
 ```
 
-### 5. Подключиться с телефона
+### 6. Подключиться с телефона
 
 1. Установите **Expo Go** из App Store / Google Play
 2. Отсканируйте QR-код из терминала
